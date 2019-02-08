@@ -4,7 +4,7 @@ namespace DmitriiKoziuk\yii2UserManager;
 use Yii;
 use yii\base\BootstrapInterface;
 use DmitriiKoziuk\yii2ConfigManager\services\ConfigService;
-use DmitriiKoziuk\yii2ConfigManager\ConfigManager as ConfigModule;
+use DmitriiKoziuk\yii2ConfigManager\ConfigManagerModule;
 use DmitriiKoziuk\yii2ModuleManager\services\ModuleService;
 
 final class Bootstrap implements BootstrapInterface
@@ -22,7 +22,7 @@ final class Bootstrap implements BootstrapInterface
             'class' => UserManager::class,
             'diContainer' => Yii::$container,
             'backendAppId' => $configService->getValue(
-                ConfigModule::GENERAL_CONFIG_NAME,
+                ConfigManagerModule::GENERAL_CONFIG_NAME,
                 'backendAppId'
             ),
         ]);
