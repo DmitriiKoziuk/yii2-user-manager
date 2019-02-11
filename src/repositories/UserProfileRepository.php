@@ -1,10 +1,10 @@
 <?php
 namespace DmitriiKoziuk\yii2UserManager\repositories;
 
-use DmitriiKoziuk\yii2Base\repositories\ActiveRecordRepository;
+use DmitriiKoziuk\yii2Base\repositories\AbstractActiveRecordRepository;
 use DmitriiKoziuk\yii2UserManager\entities\UserProfile;
 
-final class UserProfileRepository extends ActiveRecordRepository
+final class UserProfileRepository extends AbstractActiveRecordRepository
 {
     public function getById(int $userId): UserProfile
     {
