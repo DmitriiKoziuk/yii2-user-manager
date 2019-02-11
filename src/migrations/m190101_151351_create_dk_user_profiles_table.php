@@ -22,8 +22,8 @@ class m190101_151351_create_dk_user_profiles_table extends Migration
         }
         $this->createTable($this->usersProfilesTable, [
             'user_id'     => $this->integer()->notNull(),
-            'first_name'  => $this->string(45)->notNull(),
-            'last_name'   => $this->string(45)->notNull(),
+            'first_name'  => $this->string(45)->defaultValue(NULL),
+            'last_name'   => $this->string(45)->defaultValue(NULL),
             'middle_name' => $this->string(45)->defaultValue(NULL),
         ], $tableOptions);
         $this->addPrimaryKey(
@@ -37,7 +37,7 @@ class m190101_151351_create_dk_user_profiles_table extends Migration
             'user_id',
             $this->userTable,
             'id',
-            'RESTRICT',
+            'CASCADE',
             'CASCADE'
         );
     }

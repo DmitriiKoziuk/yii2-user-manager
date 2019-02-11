@@ -53,7 +53,8 @@ final class UserActionService extends DBActionService
      * @return UserData
      * @throws DataNotValidException
      * @throws UserAlreadyExistException
-     * @throws \DmitriiKoziuk\yii2Base\exceptions\EntitySaveException
+     * @throws \DmitriiKoziuk\yii2Base\exceptions\ExternalComponentException
+     * @throws \Throwable
      */
     public function createUser(UserInputForm $userInputForm, UserProfileInputForm $userProfileInputForm): UserData
     {
@@ -67,18 +68,26 @@ final class UserActionService extends DBActionService
         if (! empty($user)) {
             throw new UserAlreadyExistException("User with username '{$userInputForm->username}' already exist.");
         }
-        $user = new User();
-        $user->username = $userInputForm->username;
-        $user->email = $userInputForm->email;
-        $user->setPassword($userInputForm->password);
-        $user->generateAuthKey();
-        $this->_userRepository->save($user);
-        $userProfile = new UserProfile();
-        $userProfile->first_name = $userProfileInputForm->first_name;
-        $userProfile->last_name = $userProfileInputForm->last_name;
-        $userProfile->middle_name = $userProfileInputForm->middle_name;
-        $this->_userProfileRepository->save($userProfile);
-        return new UserData($user, $userProfile, $this->_userStatusService);
+        $this->beginTransaction();
+        try {
+            $user = new User();
+            $user->username = $userInputForm->username;
+            $user->email = $userInputForm->email;
+            $user->setPassword($userInputForm->password);
+            $user->generateAuthKey();
+            $this->_userRepository->save($user);
+            $userProfile = new UserProfile();
+            $userProfile->user_id = $user->id;
+            $userProfile->first_name = $userProfileInputForm->first_name;
+            $userProfile->last_name = $userProfileInputForm->last_name;
+            $userProfile->middle_name = $userProfileInputForm->middle_name;
+            $this->_userProfileRepository->save($userProfile);
+            $this->commitTransaction();
+            return new UserData($user, $userProfile, $this->_userStatusService);
+        } catch (\Throwable $e) {
+            $this->rollbackTransaction();
+            throw $e;
+        }
     }
 
     /**

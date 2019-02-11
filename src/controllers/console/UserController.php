@@ -35,19 +35,20 @@ final class UserController extends Controller
     /**
      * @param string $username
      * @param string $password
-     * @param string $email
+     * @param string|null $email
      * @return int
+     * @throws \Throwable
      */
     public function actionCreate(
         string $username,
         string $password,
-        string $email = 'someFakeEmailAddress'
+        string $email = null
     ) {
         try {
             $userForm = new UserInputForm(['scenario' => UserInputForm::SCENARIO_CREATE]);
             $userForm->username = $username;
             $userForm->password = $password;
-            $userForm->email = $email;
+            $userForm->email = ! empty($email) ? $email : 'someFakeEmailAddress' . rand(1, 10000);
 
             $this->_userActionService->createUser($userForm, new UserProfileInputForm());
             $this->stdout("User with username '{$username}' created." . PHP_EOL, Console::FG_GREEN);
