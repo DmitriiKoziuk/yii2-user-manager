@@ -1,9 +1,9 @@
 <?php
 namespace DmitriiKoziuk\yii2UserManager\forms;
 
-use DmitriiKoziuk\yii2Base\data\Data;
+use DmitriiKoziuk\yii2Base\forms\Form;
 
-final class UserInputForm extends Data
+final class UserInputForm extends Form
 {
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'update';

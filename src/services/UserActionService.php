@@ -3,7 +3,7 @@ namespace DmitriiKoziuk\yii2UserManager\services;
 
 use yii\db\Connection;
 use DmitriiKoziuk\yii2Base\exceptions\EntityNotFoundException;
-use DmitriiKoziuk\yii2Base\services\EntityActionService;
+use DmitriiKoziuk\yii2Base\services\DBActionService;
 use DmitriiKoziuk\yii2Base\exceptions\DataNotValidException;
 use DmitriiKoziuk\yii2UserManager\data\UserData;
 use DmitriiKoziuk\yii2UserManager\entities\User;
@@ -18,7 +18,7 @@ use DmitriiKoziuk\yii2UserManager\repositories\UserRepository;
  * Class UserActionService
  * @package DmitriiKoziuk\yii2UserManager\services
  */
-final class UserActionService extends EntityActionService
+final class UserActionService extends DBActionService
 {
     /**
      * @var UserRepository
