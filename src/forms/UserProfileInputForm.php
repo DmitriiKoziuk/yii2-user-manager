@@ -12,9 +12,8 @@ final class UserProfileInputForm extends Model
     public function rules()
     {
         return [
-            [['first_name', 'last_name'], 'required'],
             [['first_name', 'last_name', 'middle_name'], 'trim'],
-            [['first_name', 'last_name', 'middle_name'], 'string', 'min' => 1, 'max' => 45],
+            [['first_name', 'last_name', 'middle_name'], 'string', 'max' => 45],
         ];
     }
 }

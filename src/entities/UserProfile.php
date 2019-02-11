@@ -1,8 +1,6 @@
 <?php
 namespace DmitriiKoziuk\yii2UserManager\entities;
 
-use Yii;
-use yii\base\Exception;
 use yii\db\ActiveRecord;
 
 /**
@@ -31,9 +29,10 @@ class UserProfile extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'first_name', 'last_name'], 'required'],
+            [['user_id'], 'required'],
             [['user_id'], 'integer'],
             [['first_name', 'last_name', 'middle_name'], 'string', 'max' => 45],
+            [['first_name', 'last_name', 'middle_name'], 'default', 'value' => null],
             [
                 ['user_id'],
                 'exist',
