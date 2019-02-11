@@ -2,14 +2,14 @@
 namespace DmitriiKoziuk\yii2UserManager\services;
 
 use yii\db\Connection;
-use DmitriiKoziuk\yii2Base\services\EntityActionService;
+use DmitriiKoziuk\yii2Base\services\DBActionService;
 use DmitriiKoziuk\yii2UserManager\entities\User;
 use DmitriiKoziuk\yii2UserManager\entities\UserProfile;
 use DmitriiKoziuk\yii2UserManager\forms\UserProfileInputForm;
 use DmitriiKoziuk\yii2UserManager\repositories\UserRepository;
 use DmitriiKoziuk\yii2UserManager\repositories\UserProfileRepository;
 
-final class UserProfileService extends EntityActionService
+final class UserProfileService extends DBActionService
 {
     /**
      * @var UserProfileRepository
