@@ -4,12 +4,12 @@ namespace DmitriiKoziuk\yii2UserManager\repositories;
 use yii\db\Expression;
 use yii\db\ActiveQuery;
 use yii\data\ActiveDataProvider;
-use DmitriiKoziuk\yii2Base\repositories\EntityRepository;
+use DmitriiKoziuk\yii2Base\repositories\ActiveRecordRepository;
 use DmitriiKoziuk\yii2UserManager\data\UserSearchParams;
 use DmitriiKoziuk\yii2UserManager\entities\User;
 use DmitriiKoziuk\yii2UserManager\entities\UserProfile;
 
-final class UserRepository extends EntityRepository
+final class UserRepository extends ActiveRecordRepository
 {
     /**
      * @var ActiveQuery
