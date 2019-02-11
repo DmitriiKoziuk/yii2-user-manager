@@ -2,30 +2,44 @@ Yii2 user manager
 ========================
 Yii2 user manager
 
-Installation
-------------
+##Info
 
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+The best practice is use this module/extension with [yii2 advanced application](https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/start-installation.md)
 
-Either run
+## Preparing application
 
-```
-php composer.phar require dmitriikoziuk/yii2-user-manager
-```
+1. The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-or add
+    Either run
+    
+    ```
+    php composer.phar require dmitriikoziuk/yii2-user-manager
+    ```
+    
+    or add
+    
+    ```
+    "dmitriikoziuk/yii2-user-manager": "^0.1"
+    ```
+    
+    to the require section of your `composer.json` file.
 
-```
-"dmitriikoziuk/yii2-user-manager": "^0.1"
-```
+2. Create a new database and adjust the `components['db']` configuration in `/path/to/yii-application/common/config/main-local.php` accordingly.
 
-to the require section of your `composer.json` file.
+3. Open a console terminal, apply migrations with command `/path/to/php-bin/php /path/to/yii-application/yii migrate`.
 
-Usage
-------------
+4. Run command `/path/to/php-bin/php /path/to/yii-application/yii migrate --migrationPath=@DmitriiKoziuk/yii2UserManager/migrations`.
+
+##Usage
 
 Create user form console
 
 ```
-php yii dk-user-manager/user/create Username password
+php yii dk-user-manager/user/create Username password [email]
+```
+
+Delete user form console
+
+```
+php yii dk-user-manager/user/delete Username
 ```
