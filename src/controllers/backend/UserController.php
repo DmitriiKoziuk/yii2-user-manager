@@ -27,6 +27,9 @@ final class UserController extends Controller
      */
     private $_userStatusService;
 
+    /**
+     * @var UserSearchService
+     */
     private $_userSearchService;
 
     public function __construct(
@@ -77,47 +80,47 @@ final class UserController extends Controller
 
     public function actionCreate()
     {
-        $userCreateForm = new UserInputForm(['scenario' => UserInputForm::SCENARIO_CREATE]);
-        $userProfileUpdateForm = new UserProfileInputForm();
+        $userInputForm = new UserInputForm(['scenario' => UserInputForm::SCENARIO_CREATE]);
+        $userProfileInputForm = new UserProfileInputForm();
 
         if (
             Yii::$app->request->isPost &&
-            $userCreateForm->load(Yii::$app->request->post()) &&
-            $userProfileUpdateForm->load(Yii::$app->request->post()) &&
-            ($userCreateForm->validate() && $userProfileUpdateForm->validate())
+            $userInputForm->load(Yii::$app->request->post()) &&
+            $userProfileInputForm->load(Yii::$app->request->post()) &&
+            ($userInputForm->validate() && $userProfileInputForm->validate())
         ) {
-            $this->_userActionService->createUser($userCreateForm, $userProfileUpdateForm);
+            $this->_userActionService->createUser($userInputForm, $userProfileInputForm);
         }
 
         return $this->render('create', [
-            'userCreateForm' => $userCreateForm,
-            'userProfileUpdateForm' => $userProfileUpdateForm,
+            'userInputForm' => $userInputForm,
+            'userProfileInputForm' => $userProfileInputForm,
         ]);
     }
 
     public function actionUpdate(int $id)
     {
-        $userUpdateForm = new UserInputForm(['scenario' => UserInputForm::SCENARIO_UPDATE]);
-        $userProfileUpdateForm = new UserProfileInputForm();
+        $userInputForm = new UserInputForm(['scenario' => UserInputForm::SCENARIO_UPDATE]);
+        $userProfileInputForm = new UserProfileInputForm();
 
         if (
             Yii::$app->request->isPost &&
-            $userUpdateForm->load(Yii::$app->request->post()) &&
-            $userProfileUpdateForm->load(Yii::$app->request->post()) &&
-            ($userUpdateForm->validate() && $userProfileUpdateForm->validate())
+            $userInputForm->load(Yii::$app->request->post()) &&
+            $userProfileInputForm->load(Yii::$app->request->post()) &&
+            ($userInputForm->validate() && $userProfileInputForm->validate())
         ) {
-            $this->_userActionService->updateUser($id, $userUpdateForm, $userProfileUpdateForm);
-            $userUpdateForm->clearPassword();
+            $this->_userActionService->updateUser($id, $userInputForm, $userProfileInputForm);
+            $userInputForm->clearPassword();
         } else {
             $userData = $this->_userActionService->getById($id);
-            $userUpdateForm = $userData->getUserUpdateForm();
-            $userProfileUpdateForm = $userData->getUserProfileUpdateForm();
+            $userInputForm = $userData->getUserUpdateForm();
+            $userProfileInputForm = $userData->getUserProfileUpdateForm();
         }
 
         return $this->render('update', [
             'id' => $id,
-            'userUpdateForm' => $userUpdateForm,
-            'userProfileUpdateForm' => $userProfileUpdateForm,
+            'userInputForm' => $userInputForm,
+            'userProfileInputForm' => $userProfileInputForm,
         ]);
     }
 
