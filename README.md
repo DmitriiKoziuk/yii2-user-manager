@@ -16,7 +16,7 @@ php composer.phar require dmitriikoziuk/yii2-user-manager
 or add
 
 ```
-"dmitriikoziuk/yii2-user-manager": "~1.0"
+"dmitriikoziuk/yii2-user-manager": "^0.1"
 ```
 
 to the require section of your `composer.json` file.
