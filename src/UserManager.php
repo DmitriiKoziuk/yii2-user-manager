@@ -5,7 +5,9 @@ use yii\di\Container;
 use yii\web\Application as WebApp;
 use yii\base\Application as BaseApp;
 use yii\console\Application as ConsoleApp;
+use DmitriiKoziuk\yii2Base\BaseModule;
 use DmitriiKoziuk\yii2ModuleManager\interfaces\ModuleInterface;
+use DmitriiKoziuk\yii2ConfigManager\ConfigManagerModule;
 use DmitriiKoziuk\yii2UserManager\services\UserActionService;
 use DmitriiKoziuk\yii2UserManager\services\UserProfileService;
 use DmitriiKoziuk\yii2UserManager\services\UserStatusService;
@@ -44,14 +46,22 @@ final class UserManager extends \yii\base\Module implements ModuleInterface
         $this->_registerClassesToDIContainer($app);
     }
 
-    public function getId(): string
+    public static function getId(): string
     {
-        return $this::ID;
+        return self::ID;
     }
 
     public function getBackendMenuItems(): array
     {
         return ['label' => 'User manager', 'url' => ['/' . self::ID . '/user/index']];
+    }
+
+    public static function requireOtherModulesToBeActive(): array
+    {
+        return [
+            BaseModule::class,
+            ConfigManagerModule::class,
+        ];
     }
 
     /**
