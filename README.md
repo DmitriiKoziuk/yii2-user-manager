@@ -19,7 +19,7 @@ The best practice is use this module/extension with [yii2 advanced application](
     or add
     
     ```
-    "dmitriikoziuk/yii2-user-manager": "^0.1"
+    "dmitriikoziuk/yii2-user-manager": "~0.2.0"
     ```
     
     to the require section of your `composer.json` file.
