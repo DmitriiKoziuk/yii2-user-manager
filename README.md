@@ -28,7 +28,7 @@ The best practice is use this module/extension with [yii2 advanced application](
 
 3. Open a console terminal, apply migrations with command `/path/to/php-bin/php /path/to/yii-application/yii migrate`.
 
-4. Run command `/path/to/php-bin/php /path/to/yii-application/yii migrate --migrationPath=@DmitriiKoziuk/yii2UserManager/migrations`.
+4. Run command `/path/to/php-bin/php /path/to/yii-application/yii migrate`
 
 ##Usage
 
