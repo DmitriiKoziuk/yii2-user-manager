@@ -72,13 +72,12 @@ final class UserManager extends \yii\base\Module implements ModuleInterface
         if (empty($this->backendAppId)) {
             throw new \InvalidArgumentException('Property backendAppId not set.');
         }
-
         if ($app instanceof WebApp && $app->id == $this->backendAppId) {
             $this->controllerNamespace = __NAMESPACE__ . '\controllers\backend';
         }
-
         if ($app instanceof ConsoleApp) {
             $this->controllerNamespace = __NAMESPACE__ . '\controllers\console';
+            $app->controllerMap['migrate']['migrationNamespaces'][] = __NAMESPACE__ . '\migrations';
         }
     }
 
