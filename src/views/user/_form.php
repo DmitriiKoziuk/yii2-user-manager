@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use DmitriiKoziuk\yii2Base\BaseModule as BaseModule;
 
 /**
  * @var $this \yii\web\View
@@ -28,7 +27,7 @@ use DmitriiKoziuk\yii2Base\BaseModule as BaseModule;
     <?= $form->field($userProfileInputForm, 'middle_name')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t(BaseModule::TRANSLATE, 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

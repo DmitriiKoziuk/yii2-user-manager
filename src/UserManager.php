@@ -5,7 +5,6 @@ use yii\di\Container;
 use yii\web\Application as WebApp;
 use yii\base\Application as BaseApp;
 use yii\console\Application as ConsoleApp;
-use DmitriiKoziuk\yii2Base\BaseModule;
 use DmitriiKoziuk\yii2ModuleManager\interfaces\ModuleInterface;
 use DmitriiKoziuk\yii2ConfigManager\ConfigManagerModule;
 use DmitriiKoziuk\yii2UserManager\services\UserActionService;
@@ -59,7 +58,6 @@ final class UserManager extends \yii\base\Module implements ModuleInterface
     public static function requireOtherModulesToBeActive(): array
     {
         return [
-            BaseModule::class,
             ConfigManagerModule::class,
         ];
     }
@@ -77,7 +75,13 @@ final class UserManager extends \yii\base\Module implements ModuleInterface
         }
         if ($app instanceof ConsoleApp) {
             $this->controllerNamespace = __NAMESPACE__ . '\controllers\console';
-            $app->controllerMap['migrate']['migrationNamespaces'][] = __NAMESPACE__ . '\migrations';
+            $app->controllerMap['migrate'] = [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationPath' => null,
+                'migrationNamespaces' => [
+                    __NAMESPACE__ . '\migrations',
+                ],
+            ];
         }
     }
 

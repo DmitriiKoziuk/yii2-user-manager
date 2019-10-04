@@ -15,14 +15,6 @@ The best practice is use this module/extension with [yii2 advanced application](
     ```
     php composer.phar require dmitriikoziuk/yii2-user-manager
     ```
-    
-    or add
-    
-    ```
-    "dmitriikoziuk/yii2-user-manager": "~0.2.0"
-    ```
-    
-    to the require section of your `composer.json` file.
 
 2. Create a new database and adjust the `components['db']` configuration in `/path/to/yii-application/common/config/main-local.php` accordingly.
 
