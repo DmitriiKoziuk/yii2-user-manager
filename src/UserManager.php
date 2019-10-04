@@ -76,7 +76,13 @@ final class UserManager extends \yii\base\Module implements ModuleInterface
         }
         if ($app instanceof ConsoleApp) {
             $this->controllerNamespace = __NAMESPACE__ . '\controllers\console';
-            $app->controllerMap['migrate']['migrationNamespaces'][] = __NAMESPACE__ . '\migrations';
+            $app->controllerMap['migrate'] = [
+                'class' => 'yii\console\controllers\MigrateController',
+                'migrationPath' => null,
+                'migrationNamespaces' => [
+                    __NAMESPACE__ . '\migrations',
+                ],
+            ];
         }
     }
 
